@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-900 hover:bg-gray-200;
+  }
+  
+  .card {
+    @apply rounded-lg border border-gray-200 bg-white text-gray-900 shadow-sm;
+  }
+  
+  .input {
+    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}
+
+/* Custom animations for micro-learning */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Progress bar styles */
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2.5;
+}
+
+.progress-fill {
+  @apply bg-blue-500 h-2.5 rounded-full transition-all duration-300 ease-out;
+}
+
+/* Learning card styles */
+.learning-card {
+  @apply bg-white rounded-xl shadow-lg border border-gray-100 p-6 transition-all duration-300 hover:shadow-xl hover:scale-105;
+}
+
+.learning-card.active {
+  @apply ring-2 ring-blue-500 ring-opacity-50;
+}
+
+/* Question styles */
+.question-card {
+  @apply bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100;
+}
+
+.option-button {
+  @apply w-full p-4 text-left rounded-lg border border-gray-200 bg-white hover:bg-blue-50 hover:border-blue-300 transition-all duration-200;
+}
+
+.option-button.selected {
+  @apply bg-blue-100 border-blue-400;
+}
+
+.option-button.correct {
+  @apply bg-green-100 border-green-400;
+}
+
+.option-button.incorrect {
+  @apply bg-red-100 border-red-400;
+}
