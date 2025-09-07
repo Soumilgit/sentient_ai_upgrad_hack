@@ -1,6 +1,6 @@
 # Micro Learning Engine
 
-A personalized micro-learning platform that adapts to your competence and engagement levels, powered by AI and built for the Education Hackathon.
+A personalized micro-learning platform that adapts to your competence and engagement levels, powered by AI and built for a Hackathon.
 
 ## 🚀 Features
 
@@ -227,11 +227,8 @@ For support, email support@microlearning.com or create an issue in the repositor
 
 ## 🎉 Hackathon Submission
 
-This project was built for the Education Hackathon with the following deliverables:
+This project was built with the following deliverables:
 
-### Problem Statement + Solution
-- **Problem**: Traditional learning platforms don't adapt to individual competence and engagement levels
-- **Solution**: AI-powered micro-learning engine that personalizes content in real-time
 
 ### Target User + Pain Points
 - **Target**: B2C learners, students, professionals seeking skill development
@@ -248,11 +245,6 @@ This project was built for the Education Hackathon with the following deliverabl
 - **Phase 3**: Enterprise features, white-label solutions
 - **Phase 4**: Global expansion, AI model improvements
 
-### Team Members
-- [Your Name] - Full Stack Developer
-- [Team Member 2] - AI/ML Engineer
-- [Team Member 3] - UI/UX Designer
-- [Team Member 4] - Product Manager
 
 ---
 
