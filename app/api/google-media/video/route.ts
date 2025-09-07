@@ -77,13 +77,13 @@ export async function POST(request: NextRequest) {
 
     // Get the first video
     const video = videos[0]
-    const videoUrl = decodeURIComponent(video.video.uri)
+    const videoUrl = video.video?.uri ? decodeURIComponent(video.video.uri) : ''
 
     return NextResponse.json({
       success: true,
       video: {
         url: videoUrl,
-        uri: video.video.uri,
+        uri: video.video?.uri || '',
         prompt: enhancedPrompt,
         duration: duration,
         quality: quality,
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
     console.error('Video generation error:', error)
     return NextResponse.json({ 
       error: 'Internal server error',
-      details: error.message,
+      details: error instanceof Error ? error.message : 'Unknown error',
       note: 'Video generation with veo-2.0-generate-001 requires proper Google GenAI configuration and may have quota limitations.'
     }, { status: 500 })
   }

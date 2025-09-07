@@ -38,7 +38,6 @@ export default function Sidebar({
   onContentGenerationClick,
   onAITutorClick 
 }: SidebarProps) {
-  const [isOverviewOpen, setIsOverviewOpen] = useState(false)
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false)
   const [isCommunityOpen, setIsCommunityOpen] = useState(false)
 
@@ -71,53 +70,30 @@ export default function Sidebar({
         </div>
       </div>
 
-      {/* Overview Section */}
+      {/* Overview Section - Fixed (no expand/collapse) */}
       <div className="p-4">
-        <button
-          onClick={() => setIsOverviewOpen(!isOverviewOpen)}
-          className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 transition-colors"
-        >
-          <div className="flex items-center gap-3">
-            <BarChart3 className="w-5 h-5 text-gray-600" />
-            <span className="font-medium text-gray-700">Overview</span>
-          </div>
-          <motion.div
-            animate={{ rotate: isOverviewOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </motion.div>
-        </button>
+        <div className="flex items-center gap-3 p-3 mb-3">
+          <BarChart3 className="w-5 h-5 text-gray-600" />
+          <span className="font-medium text-gray-700">Overview</span>
+        </div>
 
-        <AnimatePresence>
-          {isOverviewOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="mt-2 space-y-1"
-            >
-              <button
-                onClick={onAnalyticsClick}
-                className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors text-left"
-              >
-                <BarChart3 className="w-4 h-4 text-blue-600" />
-                <span className="text-sm text-gray-600">Analytics Dashboard</span>
-              </button>
-              
-              <Link
-                href="/pricing"
-                className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 transition-colors text-left"
-              >
-                <CreditCard className="w-4 h-4 text-orange-500" />
-                <span className="text-sm text-gray-600">Upgrade Plans</span>
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className="space-y-1">
+          <button
+            onClick={onAnalyticsClick}
+            className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors text-left"
+          >
+            <BarChart3 className="w-4 h-4 text-blue-600" />
+            <span className="text-sm text-gray-600">Analytics Dashboard</span>
+          </button>
+          
+          <Link
+            href="/pricing"
+            className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50 transition-colors text-left"
+          >
+            <CreditCard className="w-4 h-4 text-orange-500" />
+            <span className="text-sm text-gray-600">Upgrade Plans</span>
+          </Link>
+        </div>
       </div>
 
       {/* Chat History Section */}

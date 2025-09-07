@@ -366,7 +366,7 @@ export class StudentScoringAlgorithm {
   private suggestNextTopic(answers: StudentAnswer[], accuracy: number): string {
     if (answers.length === 0) return 'foundation_concepts';
     
-    const subjects = [...new Set(answers.map(a => a.subject))];
+    const subjects = Array.from(new Set(answers.map(a => a.subject)));
     const subjectPerformance = subjects.map(subject => {
       const subjectAnswers = answers.filter(a => a.subject === subject);
       const subjectAccuracy = subjectAnswers.filter(a => a.isCorrect).length / subjectAnswers.length;

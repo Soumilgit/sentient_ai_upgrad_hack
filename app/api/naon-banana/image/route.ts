@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     console.error('Image generation error:', error)
     return NextResponse.json({ 
       error: 'Internal server error',
-      details: error.message,
+      details: error instanceof Error ? error.message : 'Unknown error',
       note: 'Image generation with gemini-2.5-flash-image-preview may require specific configuration or may not be available in the current API version.'
     }, { status: 500 })
   }

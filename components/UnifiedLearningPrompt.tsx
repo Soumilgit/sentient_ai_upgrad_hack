@@ -31,7 +31,7 @@ export default function UnifiedLearningPrompt({ onGenerateContent, isGenerating 
   const [isProcessingFiles, setIsProcessingFiles] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const recognitionRef = useRef<SpeechRecognition | null>(null)
+  const recognitionRef = useRef<any>(null)
 
   const handleFileUpload = async (files: FileList) => {
     setIsProcessingFiles(true)
@@ -96,7 +96,7 @@ export default function UnifiedLearningPrompt({ onGenerateContent, isGenerating 
       return
     }
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
     recognitionRef.current = new SpeechRecognition()
     recognitionRef.current.continuous = false
     recognitionRef.current.interimResults = false
@@ -106,7 +106,7 @@ export default function UnifiedLearningPrompt({ onGenerateContent, isGenerating 
       setIsListening(true)
     }
 
-    recognitionRef.current.onresult = (event) => {
+    recognitionRef.current.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript
       setPrompt(prev => prev + ' ' + transcript)
       setIsListening(false)

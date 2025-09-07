@@ -1,5 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-import pdf from 'pdf-parse'
+
+// Dynamic import to avoid build-time issues
+const getPdfParser = async () => {
+  try {
+    const pdf = await import('pdf-parse')
+    return pdf.default
+  } catch (error) {
+    console.error('PDF parser not available:', error)
+    return null
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,6 +22,15 @@ export async function POST(request: NextRequest) {
 
     if (file.type !== 'application/pdf') {
       return NextResponse.json({ error: 'File is not a PDF' }, { status: 400 })
+    }
+
+    // Get PDF parser dynamically
+    const pdf = await getPdfParser()
+    if (!pdf) {
+      return NextResponse.json({ 
+        success: false, 
+        error: 'PDF parsing is not available in this environment' 
+      }, { status: 500 })
     }
 
     // Convert File to Buffer

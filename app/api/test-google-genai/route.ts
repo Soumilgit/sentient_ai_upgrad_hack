@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
       
       console.log('Standard Gemini test successful:', text)
     } catch (error) {
-      console.error('Standard Gemini test failed:', error.message)
+      console.error('Standard Gemini test failed:', error instanceof Error ? error.message : error)
     }
 
     // Test Google GenAI for video
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
       console.log('Available models:', models)
       
     } catch (error) {
-      console.error('Google GenAI test failed:', error.message)
+      console.error('Google GenAI test failed:', error instanceof Error ? error.message : error)
     }
 
     return NextResponse.json({
@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
     console.error('Test error:', error)
     return NextResponse.json({ 
       error: 'Test failed',
-      details: error.message
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 })
   }
 }
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
     console.error('POST test error:', error)
     return NextResponse.json({ 
       error: 'Test failed',
-      details: error.message
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 })
   }
 }

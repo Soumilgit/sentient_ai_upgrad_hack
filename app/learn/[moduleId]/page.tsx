@@ -2857,7 +2857,7 @@ Ready to begin your learning journey? Let's dive into the exciting world of know
     } else {
       // Quiz completed - check if user passed (at least 1 correct out of 2)
       const correctAnswers = userAnswers.filter((userAnswer, index) => {
-        const question = learningContent.questions[index]
+        const question = learningContent?.questions[index]
         return question && userAnswer.answer === question.correctAnswer
       }).length
       
@@ -2870,7 +2870,7 @@ Ready to begin your learning journey? Let's dive into the exciting world of know
         // Store quiz results for scoring calculation
         localStorage.setItem(`quiz_results_${moduleId}`, JSON.stringify({
           correctAnswers: correctAnswers,
-          totalQuestions: learningContent.questions.length
+          totalQuestions: learningContent?.questions.length || 2
         }))
       }
       

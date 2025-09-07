@@ -209,7 +209,7 @@ Format the response as JSON with this structure:
     console.error('Content generation error:', error)
     return NextResponse.json({ 
       error: 'Internal server error',
-      details: error.message 
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 })
   }
 }

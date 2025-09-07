@@ -171,7 +171,7 @@ This ${lessonData.estimatedDuration} lesson is designed for ${lessonData.gradeLe
 
 Our learning objectives are: ${lessonData.learningObjectives.join(', ')}.
 
-The lesson is structured in ${lessonData.lessonStructure.length} main phases: ${lessonData.lessonStructure.map(phase => phase.phase).join(', ')}.
+The lesson is structured in ${lessonData.lessonStructure.length} main phases: ${lessonData.lessonStructure.map((phase: any) => phase.phase).join(', ')}.
 
 This lesson plan includes differentiation strategies to support all learners and multiple assessment opportunities to check for understanding.
 
@@ -232,9 +232,9 @@ Let's create an engaging learning experience for your students!
     })
   } catch (error) {
     console.error('Lesson planning error:', error)
-    return NextResponse.json({ 
+    return NextResponse.json({
       error: 'Internal server error',
-      details: error.message 
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 })
   }
 }

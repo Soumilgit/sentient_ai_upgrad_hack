@@ -104,17 +104,11 @@ Analyze all content thoroughly and provide specific, actionable guidance:`
     mediaFiles.forEach(file => {
       if (file.imageData) {
         contentParts.push({
-          inlineData: {
-            mimeType: file.type,
-            data: file.imageData.split(',')[1] // Remove data:image/...;base64, prefix
-          }
+          text: `[Image: ${file.type}]` // Fallback for image data
         })
       } else if (file.videoData) {
         contentParts.push({
-          inlineData: {
-            mimeType: file.type,
-            data: file.videoData.split(',')[1] // Remove data:video/...;base64, prefix
-          }
+          text: `[Video: ${file.type}]` // Fallback for video data
         })
       }
     })

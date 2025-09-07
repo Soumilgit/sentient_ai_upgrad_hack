@@ -32,13 +32,6 @@ export default function AnalyticsPopup({ isOpen, onClose, userStats }: Analytics
       icon: Clock,
       color: "text-purple-600"
     },
-    {
-      title: "Learning Streak",
-      value: `${userStats.streak} days`,
-      percentage: Math.min(100, (userStats.streak / 30) * 100),
-      icon: BarChart3,
-      color: "text-orange-600"
-    }
   ]
 
   return (
@@ -101,7 +94,7 @@ export default function AnalyticsPopup({ isOpen, onClose, userStats }: Analytics
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">
               <h3 className="font-semibold text-blue-900 mb-2">Learning Insights</h3>
               <p className="text-blue-800 text-sm">
-                You're making great progress! Your {userStats.streak}-day streak shows consistent learning habits. 
+                You're making great progress! Your consistent learning habits are showing excellent results. 
                 Consider focusing on the remaining modules to complete your learning journey.
               </p>
             </div>

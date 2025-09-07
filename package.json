@@ -22,6 +22,7 @@
     "@types/pdf-parse": "^1.1.5",
     "autoprefixer": "^10.4.16",
     "axios": "^1.11.0",
+    "chart.js": "^4.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dotenv": "^16.3.1",
@@ -32,11 +33,14 @@
     "pdf-parse": "^1.1.1",
     "postcss": "^8.4.32",
     "react": "^18",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
     "recharts": "^2.8.0",
+    "socket.io-client": "^4.8.1",
     "tailwindcss": "^3.3.6",
     "uuid": "^9.0.1",
+    "ws": "^8.18.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {

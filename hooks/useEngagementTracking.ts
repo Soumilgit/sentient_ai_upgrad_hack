@@ -146,10 +146,10 @@ export function useEngagementTracking({
       // Call the callback if provided
       if (onEngagementChange) {
         onEngagementChange({
-          scrollDepth: prev.scrollDepth,
+          scrollDepth: metrics.scrollDepth,
           timeOnPage: Math.floor(totalTime / 1000),
           clickCount: interactionCount.current,
-          pauseCount: prev.pauseCount,
+          pauseCount: metrics.pauseCount,
           focusTime: activeTime,
           interactionRate
         })

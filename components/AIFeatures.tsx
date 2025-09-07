@@ -352,7 +352,7 @@ export default function AIFeatures({ isOpen, onClose }: AIFeaturesProps) {
                               <div className="mb-3">
                                 <img
                                   src={file.url}
-                                  alt={file.description || file.name}
+                                  alt={file.name}
                                   className="w-full h-32 object-cover rounded-lg bg-gray-100"
                                   onError={(e) => {
                                     e.currentTarget.src = '/placeholder-image.jpg'

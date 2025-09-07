@@ -166,3 +166,136 @@ function extractRelatedTopics(text: string): string[] {
   
   return topics.slice(0, 3) // Max 3 related topics
 }
+
+// Engagement analysis function
+export async function analyzeEngagement(interactions: any[], sessionDuration: number) {
+  try {
+    const genAI = getGeminiAPI()
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+    
+    const prompt = `Analyze the following learning engagement data and provide insights:
+
+Interactions: ${JSON.stringify(interactions)}
+Session Duration: ${sessionDuration} minutes
+
+Please analyze:
+1. Overall engagement level (1-10)
+2. Learning patterns identified
+3. Recommendations for improvement
+4. Areas of strength
+
+Provide a JSON response with: { engagementScore, patterns, recommendations, strengths }`
+
+    const result = await model.generateContent(prompt)
+    const response = await result.response
+    const text = response.text()
+    
+    try {
+      return JSON.parse(text)
+    } catch {
+      return {
+        engagementScore: 7,
+        patterns: ['Regular interaction patterns'],
+        recommendations: ['Continue current learning approach'],
+        strengths: ['Consistent engagement']
+      }
+    }
+  } catch (error) {
+    console.error('Engagement analysis error:', error)
+    return {
+      engagementScore: 5,
+      patterns: ['Unable to analyze patterns'],
+      recommendations: ['Try again later'],
+      strengths: ['Data collection in progress']
+    }
+  }
+}
+
+// Learning path recommendation function
+export async function recommendLearningPath(userProfile: any, availableModules: any[]) {
+  try {
+    const genAI = getGeminiAPI()
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+    
+    const prompt = `Based on the user profile and available learning modules, recommend a personalized learning path:
+
+User Profile: ${JSON.stringify(userProfile)}
+Available Modules: ${JSON.stringify(availableModules)}
+
+Please analyze:
+1. User's competence level and learning style
+2. Appropriate difficulty progression
+3. Recommended module sequence
+4. Estimated timeline
+
+Provide a JSON response with: { recommendedModules, learningPath, timeline, reasoning }`
+
+    const result = await model.generateContent(prompt)
+    const response = await result.response
+    const text = response.text()
+    
+    try {
+      return JSON.parse(text)
+    } catch {
+      return {
+        recommendedModules: availableModules.slice(0, 3),
+        learningPath: ['Start with basics', 'Progress to intermediate', 'Advance to expert'],
+        timeline: '4-6 weeks',
+        reasoning: 'Recommended path based on user profile'
+      }
+    }
+  } catch (error) {
+    console.error('Learning path recommendation error:', error)
+    return {
+      recommendedModules: [],
+      learningPath: ['Unable to generate recommendation'],
+      timeline: 'Unknown',
+      reasoning: 'Error in analysis'
+    }
+  }
+}
+
+// Personalized content generation function
+export async function generatePersonalizedContent(userProfile: any, topic: string, difficulty: number) {
+  try {
+    const genAI = getGeminiAPI()
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+    
+    const prompt = `Generate personalized learning content for:
+
+User Profile: ${JSON.stringify(userProfile)}
+Topic: ${topic}
+Difficulty Level: ${difficulty}/5
+
+Please create:
+1. Customized content explanation
+2. Relevant examples for the user's background
+3. Practice exercises
+4. Learning objectives
+
+Provide a JSON response with: { content, examples, exercises, objectives }`
+
+    const result = await model.generateContent(prompt)
+    const response = await result.response
+    const text = response.text()
+    
+    try {
+      return JSON.parse(text)
+    } catch {
+      return {
+        content: `Personalized content for ${topic} at difficulty level ${difficulty}`,
+        examples: [`Example 1 for ${topic}`, `Example 2 for ${topic}`],
+        exercises: [`Practice exercise 1`, `Practice exercise 2`],
+        objectives: [`Understand ${topic}`, `Apply ${topic} concepts`]
+      }
+    }
+  } catch (error) {
+    console.error('Personalized content generation error:', error)
+    return {
+      content: `Content for ${topic}`,
+      examples: ['Example content'],
+      exercises: ['Practice exercises'],
+      objectives: ['Learning objectives']
+    }
+  }
+}

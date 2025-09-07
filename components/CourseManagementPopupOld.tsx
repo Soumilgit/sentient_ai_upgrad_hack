@@ -7,6 +7,7 @@ import {
   Send, Mic, MicOff, Volume2, VolumeX, Bot, User, Loader2, Brain,
   Paperclip, Image as ImageIcon, Video, Music, FileText, File
 } from 'lucide-react'
+import ChatGPTLikeUI from './ChatGPTLikeUI'
 
 interface MediaFile {
   id: string
@@ -328,8 +329,8 @@ export default function CourseManagementPopup({ isOpen, onClose, learningModules
 
                   {section.title === "Your Courses" ? (
                     <div className="space-y-3">
-                      {section.courses.length > 0 ? (
-                        section.courses.map((course) => (
+                      {(section as any).courses?.length > 0 ? (
+                        (section as any).courses.map((course: any) => (
                           <div key={course.id} className="bg-white rounded-lg p-4 border border-gray-200">
                             <div className="flex items-center justify-between">
                               <div>

@@ -243,7 +243,7 @@ export default function GamificationAssignment({ isOpen, onClose }: Gamification
   const usePowerUp = (powerUp: string) => {
     if (usedPowerUps.has(powerUp)) return
     
-    setUsedPowerUps(prev => new Set([...prev, powerUp]))
+    setUsedPowerUps(prev => new Set(Array.from(prev).concat(powerUp)))
     
     switch (powerUp) {
       case 'hint':
@@ -512,7 +512,7 @@ export default function GamificationAssignment({ isOpen, onClose }: Gamification
                     </div>
                   )}
 
-                  {(currentQuestion.type === 'fill_blank' || currentQuestion.type === 'subjective') && (
+                  {((currentQuestion as any).type === 'fill_blank' || (currentQuestion as any).type === 'subjective') && (
                     <div className="space-y-4">
                       <div className="relative">
                         <textarea

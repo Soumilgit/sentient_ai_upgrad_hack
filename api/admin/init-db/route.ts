@@ -18,9 +18,8 @@ export async function POST(request: NextRequest) {
     const result = await initializeDatabase()
     
     return NextResponse.json({
-      success: true,
-      message: 'Database initialized successfully',
-      ...result
+      ...result,
+      message: result.message || 'Database initialized successfully'
     })
     
   } catch (error) {

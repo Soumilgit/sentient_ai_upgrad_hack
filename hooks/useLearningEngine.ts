@@ -35,7 +35,7 @@ export function useLearningEngine({ userId }: UseLearningEngineProps) {
           name: 'Learning User'
         })
         
-        setUser(userData)
+        setUser(userData as any)
         
         // Load analytics
         const userAnalytics = await engine.getLearningAnalytics()

@@ -95,7 +95,7 @@ Format the response as JSON with this structure:
 ${tutorData.greeting}
 
 Today we're going to learn about ${prompt}. Here are our learning objectives:
-${tutorData.learningObjectives.map((obj, i) => `${i + 1}. ${obj}`).join('\n')}
+${tutorData.learningObjectives.map((obj: any, i: number) => `${i + 1}. ${obj}`).join('\n')}
 
 Let me explain this topic step by step:
 ${tutorData.explanation.introduction}
@@ -103,10 +103,10 @@ ${tutorData.explanation.introduction}
 ${tutorData.explanation.mainContent}
 
 Here are some examples to help you understand:
-${tutorData.explanation.examples.map((ex, i) => `Example ${i + 1}: ${ex}`).join('\n')}
+${tutorData.explanation.examples.map((ex: any, i: number) => `Example ${i + 1}: ${ex}`).join('\n')}
 
 Now let's practice with some problems:
-${tutorData.practiceProblems.map((prob, i) => `Problem ${i + 1}: ${prob.problem}`).join('\n')}
+${tutorData.practiceProblems.map((prob: any, i: number) => `Problem ${i + 1}: ${prob.problem}`).join('\n')}
 
 ${tutorData.encouragement}
         `.trim()
@@ -164,9 +164,9 @@ ${tutorData.encouragement}
     })
   } catch (error) {
     console.error('AI Tutor error:', error)
-    return NextResponse.json({ 
+    return NextResponse.json({
       error: 'Internal server error',
-      details: error.message 
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 })
   }
 }
